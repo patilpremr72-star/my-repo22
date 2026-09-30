@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prem Patil | Cloud & AWS Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ================= BACKGROUND ================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 80% 40%, rgba(255, 0, 0, 0.18), transparent 30%),
+                linear-gradient(120deg, #000000, #090000, #150000);
+            z-index: -5;
+        }
+
+        /* Red moving light */
+        .red-light {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 0, 0, 0.08);
+            filter: blur(100px);
+            border-radius: 50%;
+            animation: lightMove 7s infinite alternate;
+            z-index: -4;
+        }
+
+        @keyframes lightMove {
+            from {
+                transform: translate(-100px, 50px);
+            }
+
+            to {
+                transform: translate(700px, 300px);
+            }
+        }
+
+        /* ================= CAR ================= */
+
+        .car {
+            position: fixed;
+            right: -600px;
+            bottom: 35px;
+            width: 650px;
+            opacity: 0.22;
+            filter:
+                grayscale(100%)
+                contrast(150%)
+                drop-shadow(0 0 25px red);
+            animation: carMove 18s linear infinite;
+            z-index: -2;
+        }
+
+        @keyframes carMove {
+            0% {
+                right: -650px;
+                transform: scale(0.9);
+            }
+
+            50% {
+                right: 30%;
+                transform: scale(1);
+            }
+
+            100% {
+                right: 110%;
+                transform: scale(0.9);
+            }
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 0, 0, 0.25);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo span {
+            color: #ff1a1a;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff1a1a;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 10% 50px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            animation: fadeUp 1.5s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hello {
+            color: #ff2222;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 7vw, 80px);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #ff1a1a;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #bbbbbb;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 13px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #e60000;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .primary:hover {
+            background: #ff2929;
+            transform: translateY(-4px);
+        }
+
+        .secondary {
+            border: 1px solid #ff2222;
+            color: white;
+        }
+
+        .secondary:hover {
+            background: #ff2222;
+            transform: translateY(-4px);
+        }
+
+        /* ================= SECTIONS ================= */
+
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #ff1a1a;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            color: #cccccc;
+            line-height: 1.9;
+            font-size: 17px;
+        }
+
+        /* ================= SKILLS ================= */
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .skill {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #292929;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 10px;
+            transition: 0.4s;
+        }
+
+        .skill:hover {
+            transform: translateY(-10px);
+            border-color: #ff1a1a;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+        }
+
+        .skill h3 {
+            color: #ff3333;
+            margin-bottom: 10px;
+        }
+
+        .skill p {
+            color: #aaa;
+        }
+
+        /* ================= PROJECTS ================= */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .project {
+            background: linear-gradient(145deg, #111, #070707);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #252525;
+            transition: 0.4s;
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+            border-color: #ff1a1a;
+        }
+
+        .project h3 {
+            color: #ff2929;
+            margin-bottom: 15px;
+        }
+
+        .project p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        /* ================= EDUCATION ================= */
+
+        .education {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+            background: rgba(15, 15, 15, 0.8);
+            padding: 40px;
+            border-left: 3px solid red;
+            border-radius: 10px;
+        }
+
+        .education h3 {
+            color: #ff2222;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .education p {
+            color: #aaa;
+            margin: 8px;
+        }
+
+        /* ================= CONTACT ================= */
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social {
+            padding: 12px 22px;
+            border: 1px solid #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .social:hover {
+            border-color: red;
+            background: red;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #222;
+            color: #666;
+        }
+
+        footer span {
+            color: red;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 18px 5%;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding-left: 7%;
+                padding-right: 7%;
+            }
+
+            section {
+                padding: 80px 7%;
+            }
+
+            .car {
+                width: 450px;
+                opacity: 0.15;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+    <div class="red-light"></div>
+
+    <!-- Animated Car -->
+    <img
+        class="car"
+        src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80"
+        alt="Luxury Car">
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Prem<span>.</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="hello">HELLO, I'M</div>
+
+            <h1>
+                Prem <span>Patil</span>
+            </h1>
+
+            <h2>
+                Cloud & AWS Fresher
+            </h2>
+
+            <p>
+                BCA graduate with a strong interest in Cloud Computing,
+                AWS, Linux, Networking and DevOps technologies.
+                Currently building practical cloud projects and
+                improving my technical skills.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#projects" class="btn primary">
+                    View Projects
+                </a>
+
+                <a href="#contact" class="btn secondary">
+                    Contact Me
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <h2 class="section-title">
+            About <span>Me</span>
+        </h2>
+
+        <div class="about">
+
+            <p>
+                I am a BCA graduate interested in Cloud Computing and
+                Information Technology. I enjoy learning AWS services,
+                Linux administration, networking and DevOps concepts.
+                My goal is to start my career in the IT industry and
+                continuously develop my technical and problem-solving skills.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+    <section id="skills">
+
+        <h2 class="section-title">
+            My <span>Skills</span>
+        </h2>
+
+        <div class="skills">
+
+            <div class="skill">
+                <h3>AWS</h3>
+                <p>EC2, S3, VPC, EBS, RDS, IAM</p>
+            </div>
+
+            <div class="skill">
+                <h3>Linux</h3>
+                <p>Commands, Users, Permissions, Services</p>
+            </div>
+
+            <div class="skill">
+                <h3>Networking</h3>
+                <p>VPC, Subnets, IP, DNS, Routing</p>
+            </div>
+
+            <div class="skill">
+                <h3>Python</h3>
+                <p>Basics, OOP and Automation</p>
+            </div>
+
+            <div class="skill">
+                <h3>HTML & CSS</h3>
+                <p>Responsive Web Design</p>
+            </div>
+
+            <div class="skill">
+                <h3>Git & GitHub</h3>
+                <p>Version Control & Repository Management</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section id="projects">
+
+        <h2 class="section-title">
+            My <span>Projects</span>
+        </h2>
+
+        <div class="projects">
+
+            <div class="project">
+                <h3>AWS EC2 Web Server</h3>
+                <p>
+                    Deployed a web server on an AWS EC2 Linux instance
+                    using Apache HTTP Server and configured security
+                    group access.
+                </p>
+            </div>
+
+            <div class="project">
+                <h3>AWS VPC Project</h3>
+                <p>
+                    Created a VPC with public and private subnets,
+                    route tables, Internet Gateway and networking
+                    configuration.
+                </p>
+            </div>
+
+            <div class="project">
+                <h3>Cloud Portfolio Website</h3>
+                <p>
+                    Designed and deployed a responsive portfolio website
+                    using HTML and CSS with a modern dark theme.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EDUCATION -->
+    <section>
+
+        <h2 class="section-title">
+            <span>Education</span>
+        </h2>
+
+        <div class="education">
+
+            <h3>BCA – Bachelor of Computer Applications</h3>
+
+            <p>
+                Sandip University, Nashik
+            </p>
+
+            <p>
+                2023 – 2026
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <h2 class="section-title">
+            Contact <span>Me</span>
+        </h2>
+
+        <div class="contact">
+
+            <p>
+                Interested in Cloud Computing, AWS and IT opportunities.
+            </p>
+
+            <div class="socials">
+
+                <a href="#" class="social">
+                    GitHub
+                </a>
+
+                <a href="#" class="social">
+                    LinkedIn
+                </a>
+
+                <a href="mailto:patilpremr72@gmail.com" class="social">
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        © 2026 Prem Patil.
+        Built with <span>♥</span> & Cloud Technology.
+
+    </footer>
+
+</body>
+</html>
